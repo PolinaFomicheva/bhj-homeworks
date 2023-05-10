@@ -1,11 +1,12 @@
 const slider = document.querySelectorAll(".slider__item");
-const arrow = document.querySelectorAll(".slider__arrow");
+const arrowPrev = document.querySelector(".slider__arrow_prev");
+const arrowNext = document.querySelector(".slider__arrow_next");
 const dots = document.querySelectorAll(".slider__dot");
 
 let sliderActive = 0;
 
-let arr = arrow.forEach(element => {
-    element.onclick = () => {
+
+    arrowPrev.onclick = () => {
         if (sliderActive - 1 < 0) {
             sliderActive = slider.length - 1;
         } else {
@@ -13,7 +14,15 @@ let arr = arrow.forEach(element => {
         }
         changeSlide(sliderActive);
     }
-    });
+    
+    arrowNext.onclick = () => {
+        if (sliderActive + 1 === slider.length) {
+            sliderActive = 0;
+        } else {
+            sliderActive += 1;
+        }
+        changeSlide(sliderActive);
+    }
 
 dots[sliderActive].classList.add('slider__dot_active');
 [...dots].forEach((item, i) => item.onclick = () => {
